@@ -3,12 +3,8 @@ services:
     name: n8n-server
     env: docker
     plan: free
-    region: frankfurt
     dockerfilePath: ./Dockerfile
+    autoDeploy: true
     envVars:
-      - key: N8N_HOST
-        value: n8n-server.onrender.com
       - key: N8N_PORT
         value: 5678
-      - key: WEBHOOK_TUNNEL_URL
-        value: https://n8n-server.onrender.com
