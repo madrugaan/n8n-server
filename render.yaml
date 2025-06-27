@@ -6,5 +6,19 @@ services:
     dockerfilePath: ./Dockerfile
     autoDeploy: true
     envVars:
-      - key: PORT
-        value: 10000
+  - key: N8N_BASIC_AUTH_ACTIVE
+    value: "true"
+  - key: N8N_BASIC_AUTH_USER
+    value: "madrugaan"
+  - key: N8N_BASIC_AUTH_PASSWORD
+    value: "CamionesAF12345"
+  - key: N8N_HOST
+    value: "0.0.0.0"
+  - key: N8N_PORT
+    value: "10000"
+  - key: N8N_PROTOCOL
+    value: "http"
+  - key: WEBHOOK_URL
+    value: "https://n8n-server.onrender.com"
+  - key: GENERIC_TIMEZONE
+    value: "Europe/Madrid"
