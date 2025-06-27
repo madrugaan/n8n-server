@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: n8n-server
+    env: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    autoDeploy: true
+    buildCommand: ""
+    startCommand: ""
+    envVars:
+      - key: N8N_PORT
+        value: 5678
