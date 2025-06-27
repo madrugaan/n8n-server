@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Registro GRUPO AN</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --verde-suave: #d7e7c1;
+      --verde-oscuro: #30692b;
+      --verde-boton: #4e7c31;
+      --amarillo-oliva: #9e9b25;
+      --blanco: #ffffff;
+    }
+
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to bottom, #d7e7c1, #bcd7a0);
+      display: flex;
+      justify-content: center;
+    }
+
+    .form-container {
+      background-color: #fdfce9;
+      border-radius: 20px;
+      padding: 25px;
+      max-width: 500px;
+      width: 100%;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: var(--verde-oscuro);
+      font-size: 2.4em;
+      margin-bottom: 0;
+    }
+
+    h2 {
+      text-align: center;
+      color: var(--amarillo-oliva);
+      margin-bottom: 25px;
+      font-size: 1.5em;
+      font-style: italic;
+    }
+
+    label {
+      display: block;
+      margin: 15px 0 6px;
+      color: var(--verde-oscuro);
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[list],
+    select,
+    input[type="file"] {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid var(--amarillo-oliva);
+      border-radius: 8px;
+      font-size: 1em;
+      box-sizing: border-box;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      margin-top: 5px;
+      appearance: none;
+      background: transparent;
+    }
+
+    input[type="range"]::-webkit-slider-runnable-track {
+      height: 6px;
+      background: var(--verde-boton);
+      border-radius: 5px;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      appearance: none;
+      width: 16px;
+      height: 16px;
+      background: var(--amarillo-oliva);
+      border-radius: 50%;
+      margin-top: -5px;
+      cursor: pointer;
+    }
+
+    button {
+      margin-top: 25px;
+      width: 100%;
+      padding: 15px;
+      font-size: 1.1em;
+      font-weight: bold;
+      color: var(--blanco);
+      background-color: var(--verde-boton);
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #3d6628;
+    }
+
+    @media (max-width: 600px) {
+      .form-container {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h1>GRUPO AN</h1>
+    <h2>Aldeanueva de Figueroa</h2>
+
+    <form action="http://localhost:5678/webhook/registro-remolques" method="POST" enctype="multipart/form-data">
+      <label for="cliente">Cliente:</label>
+      <input type="text" id="cliente" name="cliente" placeholder="Nombre del cliente" required x-webkit-speech speech>
+
+      <label for="producto">Producto:</label>
+      <input list="productos" id="producto" name="producto" placeholder="Escribe o selecciona un producto" required x-webkit-speech speech>
+      <datalist id="productos">
+        <option value="Trigo">
+        <option value="Cebada">
+        <option value="Avena">
+        <option value="Centeno">
+        <option value="Pipas Normales">
+        <option value="Pipas Alto Oleico">
+      </datalist>
+
+      <label for="peso_remolque">Peso Remolque (kg):</label>
+      <input type="number" id="peso_remolque" name="peso_remolque" min="0" max="40000" step="20" value="0" required>
+      <input type="range" min="0" max="40000" step="20" value="0" id="slider_peso" oninput="peso_remolque.value = this.value" />
+
+      <label for="tara_remolque">Tara Remolque (kg):</label>
+      <input type="number" id="tara_remolque" name="tara_remolque" min="0" max="40000" step="20" value="0" required>
+      <input type="range" min="0" max="40000" step="20" value="0" id="slider_tara" oninput="tara_remolque.value = this.value" />
+
+      <label for="foto_ticket">Foto Ticket:</label>
+      <input type="file" id="foto_ticket" name="foto_ticket" accept="image/*" capture="environment" required>
+
+      <button type="submit">Registrar Ticket</button>
+    </form>
+  </div>
+
+  <script>
+    const pesoInput = document.getElementById('peso_remolque');
+    const pesoSlider = document.getElementById('slider_peso');
+    pesoInput.addEventListener('input', () => pesoSlider.value = pesoInput.value);
+
+    const taraInput = document.getElementById('tara_remolque');
+    const taraSlider = document.getElementById('slider_tara');
+    taraInput.addEventListener('input', () => taraSlider.value = taraInput.value);
+  </script>
+</body>
+</html>
